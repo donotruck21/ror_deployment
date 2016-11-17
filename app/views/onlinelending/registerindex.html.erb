@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <a id="loginlink" href="/onlinelending/loginindex">Already a member? Click here to Log In</a>
+        <div class="container">
+            <div class="leftCol">
+                <h1>Lender</h1>
+                <form action="/onlinelending/register" method="post">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                    <input type="hidden" name="user_type" value="lender">
+                    <div class="form-group">
+                       <label for="first_name">First Name:</label>
+                       <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                       <label for="last_name">Last Name:</label>
+                       <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                       <label for="email">Email Address:</label>
+                       <input type="email" name="email" class="form-control" id="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="money">Money</label>
+                        <input type="text" name="money" class="form-control" id="money" placeholder="$">
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-info">
+                </form>
+
+                <% flash[:l_errors].each { |error| %>
+    				<p class="err"><%= error %></p>
+    			<% } if flash[:l_errors] %>
+            </div>
+
+
+            <div class="rightCol">
+                <h1>Borrower</h1>
+                <form action="/onlinelending/register" method="post">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                    <input type="hidden" name="user_type" value="borrower">
+                    <div class="form-group">
+                       <label for="first_name">First Name:</label>
+                       <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                       <label for="last_name">Last Name:</label>
+                       <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                       <label for="email">Email Address:</label>
+                       <input type="email" name="email" class="form-control" id="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="need_money_for">Need Money For:</label>
+                        <input type="text" name="need_money_for" class="form-control" id="need_money_for">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" name="description" id="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount_needed">Amount Needed</label>
+                        <input type="text" name="amount_needed" class="form-control" id="amount_needed" placeholder="$">
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-info">
+                </form>
+
+                <% flash[:b_errors].each { |error| %>
+    				<p class="err"><%= error %></p>
+    			<% } if flash[:b_errors] %>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="user_information">
+                <div class="user_content">
+                    <h3>Welcome <%= @borrower.first_name %> <%= @borrower.last_name %></h3>
+                    <h3>Amount Needed: $<%= @borrower.amount_needed %></h3>
+                    <h3>Amount Raised: $<%= @borrower.amount_raised %></h3>
+                </div>
+                <div class="logout">
+                    <a href="/logout">Log Out</a>
+                </div>
+            </div>
+            <hr>
+            <h2>People Who Lent You Money:</h2>
+            <table class="table table-striped">
+                <theads>
+                    <tr class="info bold">
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Amount Lent</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_lends.each do |lend| %>
+                        <tr>
+                            <td><%= lend.first_name %> <%= lend.last_name %></td>
+                            <td><%= lend.email %></td>
+                            <td><%= lend.amount %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

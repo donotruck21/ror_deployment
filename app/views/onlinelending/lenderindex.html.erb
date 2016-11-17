@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="user_information">
+                <div class="user_content">
+                    <h3>Welcome <%= @lender.first_name %> <%= @lender.last_name %></h3>
+                    <h3>Account Balance: $<%= @lender.money %></h3>
+                </div>
+                <div class="logout">
+                    <a href="/logout">Log Out</a>
+                </div>
+            </div>
+            <hr>
+            <h2>List of People in Need of Help:</h2>
+            <% if flash[:message] %>
+                <p class="err"><%= flash[:message] %></p>
+            <% end %>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="info bold">
+                        <td>Name</td>
+                        <td>Need $ For</td>
+                        <td>Description</td>
+                        <td>Amount Needed</td>
+                        <td>Amount Raised</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_borrowers.each do |borrower| %>
+                        <tr>
+                            <td><%= borrower.first_name %> <%= borrower.last_name %></td>
+                            <td><%= borrower.need_money_for %></td>
+                            <td><%= borrower.description %></td>
+                            <td><%= borrower.amount_needed %></td>
+                            <td><%= borrower.amount_raised %></td>
+                            <td>
+                                <form action="/lend" method="post">
+                                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                    <input type="text" class="lendinput" name="lend_amount" placeholder="$">
+                                    <input type="hidden" name="borrower_id" value="<%= borrower.id %>">
+                                    <input type="submit" class="btn btn-xs btn-success" value="Lend">
+                                </form>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table><br><br><hr>
+
+            <h2>List of People You've Lent Money To:</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="info bold">
+                        <td>Name</td>
+                        <td>Need $ For</td>
+                        <td>Description</td>
+                        <td>Amount Needed</td>
+                        <td>Amount Raised</td>
+                        <td>Amount Lent</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_lends.each do |lend| %>
+                        <tr>
+                            <td><%= lend.first_name %> <%= lend.last_name %></td>
+                            <td><%= lend.need_money_for %></td>
+                            <td><%= lend.description %></td>
+                            <td><%= lend.amount_needed %></td>
+                            <td><%= lend.amount_raised %></td>
+                            <td><%= lend.amount %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+
+            </table>
+
+        </div>
+    </body>
+</html>

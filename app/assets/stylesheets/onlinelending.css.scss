@@ -1,0 +1,41 @@
+// Place all the styles related to the Onlinelending controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.leftCol, .rightCol{
+    display: inline-block;
+    vertical-align: top;
+    height: 750px;
+    width: 450px;
+    padding: 20px;
+}
+
+.err{
+    color: red;
+}
+
+#loginlink{
+    margin-left: 40%;
+}
+
+.user_information{
+    width: 100%;
+    height: 170px;
+}
+
+.user_information div{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.user_content{
+    width: 1000px;
+}
+
+.lendinput{
+    width: 70px;
+}
+
+.bold{
+    font-weight: bold;
+}
